@@ -17,7 +17,7 @@ function handleFilter() {
 }
 
 function handleSorting() {
-    sortingMode = 'asc';
+    // sortingMode = 'asc';
     store.sortCharacters();
 }
 </script>

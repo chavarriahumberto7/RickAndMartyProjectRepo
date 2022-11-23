@@ -11,14 +11,22 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
 import { useCharacterStore } from '../store/store';
-
-
 const store = useCharacterStore();
 
 function handleClick(source) {
   store.loadSource(source);
 }
+
+onMounted(() => {
+  if (!store.current.items) {
+
+    handleClick(1);
+    console.log('mounting pagination')
+  }
+
+})
 
 </script>
 

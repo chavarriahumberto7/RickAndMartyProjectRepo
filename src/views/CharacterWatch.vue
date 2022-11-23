@@ -3,29 +3,37 @@
 
         <h1>View Character</h1>
         <div>
-            <h3>{{ this.$route.params.id }}</h3>
+            <div v-for="item in items" :key="item.id">
+             <div v-if="item.id == this.$route.params.id">
+                <VSItemCard :item="item">
+                    <VSEpisodesCard :episodes="item.episode"/>
+                </VSItemCard>
+
+            </div>
+                
+             </div>
+             
         </div>
 
 
     </div>
 </template>
 
-<script>
-export default {
-    methods: {
-        async getCharacter() {
-            console.log('getting character')
-        },
-    },
-    mounted() {
-        this.getCharacter();
-    },
-};
+<script setup>
+import { useCharacterStore } from '../store/store';
+import VSItemCard from '../components/VSItemCard.vue'
+import VSEpisodesCard from '../components/VSEpisodesCard.vue';
+
+const store = useCharacterStore();
+const items = store.current.items
+
 </script>
 
 <style scoped>
 .container {
-    height: 300px;
-    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 </style>

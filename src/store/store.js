@@ -10,9 +10,12 @@ export const useCharacterStore = defineStore({
             current: {
                 source: null,
                 items: null,
+                episodes: null,
             },
         };
     },
+
+
 
     // actions
 
@@ -31,28 +34,21 @@ export const useCharacterStore = defineStore({
                 })
                 .catch(err => console.error(err));
         },
-        async registerNewSource(url) {
+        async loadEpisode(id) {
 
-            console.log('getting to  register', { url })
-            /* try {
+            const url = `https://rickandmortyapi.com/api/episode/${id}`
 
-                const response = await fetch(url);
-                let text = await response.text();
+            const options = { method: 'GET' };
 
+            fetch(url, options)
+                .then(response => response.json())
+                .then(response => {
+                    const { results: characters } = response;
+                    this.current.items = [...characters];
+                    this.current.source = characters[0].url
+                })
+                .catch(err => console.error(err));
 
-
-
-                const source = {
-                    id: crypto.randomUUID(),
-                    name: title.textContent,
-                }
-
-                this.sources.push(source);
-
-            } catch (error) {
-                console.log(error);
-
-            } */
         },
         filterCharacters(name) {
 

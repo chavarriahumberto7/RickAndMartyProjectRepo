@@ -1,8 +1,9 @@
 <script setup>
 import { useCharacterStore } from '../store/store'
-import Header from '../components/Header.vue';
-import Characters from '../components/Characters.vue'
-import Pagination from '../components/Pagination.vue';
+import Header from '../components/VSHeader.vue';
+import Characters from '../components/VSCharacter.vue'
+import Pagination from '../components/VSPagination.vue';
+
 
 const store = useCharacterStore();
 

@@ -2,7 +2,6 @@
 
 import { ref } from 'vue';
 import { useCharacterStore } from '../store/store'
-import Pagination from './Pagination.vue';
 
 
 const characterName = ref('');
@@ -24,7 +23,10 @@ function handleSorting() {
 
 <template>
     <div class="container">
-        <h2>Rick and Morty Characters</h2>
+        <div class="title">
+            <!-- <img src="./icons/Home.svg" alt="Home"> -->
+            <h2>Rick and Morty Characters</h2>
+        </div>
         <div class="header">
             <form action="" @submit.prevent="handleFilter">
                 <input @change="handleFilter" type="text" required v-model="characterName" />
@@ -39,13 +41,22 @@ function handleSorting() {
 </template>
 
 <style scoped>
+.title {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.title img {
+    height: 3.5em;
+    ;
+}
+
 .header {
     display: flex;
     flex-direction: row;
     gap: 5px;
     align-items: center;
-
-
 }
 
 .container h2 {
@@ -62,5 +73,49 @@ function handleSorting() {
 .action-icon {
     height: 15px;
     width: 15px;
+}
+
+button {
+    background: black;
+    cursor: pointer;
+    border: none;
+    padding: 10px 30px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    border-radius: 12px;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #645CAA, #F29494,
+            #645CAA, white);
+    background-size: 800%;
+    border-radius: 10px;
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+
 }
 </style>

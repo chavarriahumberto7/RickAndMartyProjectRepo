@@ -1,0 +1,24 @@
+/* Color Theme Swatches in Hex */
+.primary {
+    color: #242616;
+}
+
+.secondary {
+    color: #736D63;
+}
+
+.ui-1 {
+    color: #BF6B21;
+}
+
+.ui-2 {
+    color: #732D2D;
+}
+
+.font {
+    color: white
+}
+
+.accent {
+    color: #F29494;
+}

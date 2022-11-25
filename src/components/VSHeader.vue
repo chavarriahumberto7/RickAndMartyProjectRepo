@@ -9,11 +9,11 @@
                 <input class="input" type="text" required v-model="characterName" />
                 <div buttons>
                     <button type="submit">search</button>
-                    <button action="" @click="handleSorting">
+                    <button action="" @click.prevent="handleSorting">
                         <img v-if="sortingMode === SORTING_MODE_ASCENDING" class="action-icon" src='./icons/sortAscending.png' alt=""
-                            @submit="handleSorting">
+                            @click.prevent="handleSorting">
                         <img v-if="sortingMode === SORTING_MODE_DESCENDING" class="action-icon" src='./icons/sortDescending.png' alt=""
-                            @submit="handleSorting">
+                            @clik.prevent="handleSorting">
                     </button>
                 </div>
             </form>

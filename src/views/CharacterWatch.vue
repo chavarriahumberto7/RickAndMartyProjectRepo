@@ -4,7 +4,8 @@
         <h1>View Character</h1>
         <div>
             <div v-for="item in items" :key="item.id">
-                <div v-if="item.id == this.$route.params.id">
+                <!-- <div v-if="item.id == this.$route.params.id"> -->
+                <div v-if="item.id == $route.params.id">
                 
                     <VSItemCard :item="item">
                         <VSReviews :item="item" />

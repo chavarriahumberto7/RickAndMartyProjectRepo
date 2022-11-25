@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CharacterWatch from "../views/CharacterWatch.vue"
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // import.meta.env.BASE_URL
+  history: createWebHistory(),
   routes: [
     {
       path: "/", redirect: '/character'

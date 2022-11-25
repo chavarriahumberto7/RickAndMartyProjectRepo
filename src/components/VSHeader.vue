@@ -7,14 +7,17 @@
         <div class="header">
             <form action="" @submit.prevent="handleFilter">
                 <input class="input" type="text" required v-model="characterName" />
-                <button type="submit">search</button>
+                <div buttons>
+                    <button type="submit">search</button>
+                    <button action="" @click="handleSorting">
+                        <img v-if="sortingMode === SORTING_MODE_ASCENDING" class="action-icon" src='./icons/sortAscending.png' alt=""
+                            @submit="handleSorting">
+                        <img v-if="sortingMode === SORTING_MODE_DESCENDING" class="action-icon" src='./icons/sortDescending.png' alt=""
+                            @submit="handleSorting">
+                    </button>
+                </div>
             </form>
-            <button action="" @click="handleSorting">
-                <img v-if="sortingMode === SORTING_MODE_ASCENDING" class="action-icon" src='./icons/sortAscending.png'
-                    alt="" @submit="handleSorting">
-                <img v-if="sortingMode === SORTING_MODE_DESCENDING" class="action-icon" src='./icons/sortDescending.png'
-                    alt="" @submit="handleSorting">
-            </button>
+            
         </div>
     </div>
 
@@ -64,11 +67,19 @@ function handleSorting() {
     ;
 }
 
-.header {
+.header form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 5px;
     align-items: center;
+        padding: 20px;
+        line-height: 50px;
+        
+}
+.header form div{
+    display: flex;
+    gap: 10px;
+    padding: 10px 0px;
 }
 
 .container h2 {

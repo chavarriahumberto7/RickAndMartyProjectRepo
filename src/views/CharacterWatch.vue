@@ -1,7 +1,9 @@
 <template>
     <div class="container">
-
-        <h1>View Character</h1>
+        <div class="head">
+            <router-link to="/"><img class="img-icon" src="../components/icons/backArrow.png" alt="go back icon" /></router-link>
+        </div>
+            <h1>View Character</h1>
         <div>
             <div v-for="item in items" :key="item.id">
                 <!-- <div v-if="item.id == this.$route.params.id"> -->
@@ -34,5 +36,17 @@ const items = store.current.items
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+.head{
+    width: 100%;
+}
+.img-icon {
+    height: 40px;
+    padding: .5rem;
+    border: solid 1.5px #000;
+    position: absolute;
+    transform: translate(10px,10px);
+    border-radius: 50%;
+
 }
 </style>

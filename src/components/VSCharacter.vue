@@ -31,6 +31,6 @@ const store = useCharacterStore();
     justify-content: center;
     flex-direction: row;
     padding: 20px 10px;
-    background-color: #645CAA;
+    /* background-color: #645CAA; */
 }
 </style>

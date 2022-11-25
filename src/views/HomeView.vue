@@ -12,6 +12,7 @@ const store = useCharacterStore();
 <template>
   <div class="home">
 
+    
     <Header />
     <Pagination />
     <Characters />

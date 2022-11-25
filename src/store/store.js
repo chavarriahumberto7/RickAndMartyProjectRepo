@@ -10,15 +10,12 @@ export const useCharacterStore = defineStore({
             current: {
                 source: null,
                 items: null,
-                episodes: null,
+                episode: null,
+                totalCharacters: null,
             },
         };
     },
-
-
-
     // actions
-
     actions: {
         async loadSource(source) {
             const url = `https://rickandmortyapi.com/api/character/?page=${source}`
@@ -36,18 +33,24 @@ export const useCharacterStore = defineStore({
         },
         async loadEpisode(id) {
 
-            const url = `https://rickandmortyapi.com/api/episode/${id}`
+            if (id >= 0) {
+                const url = `https://rickandmortyapi.com/api/episode/${id}`
 
-            const options = { method: 'GET' };
+                const options = { method: 'GET' };
 
-            fetch(url, options)
-                .then(response => response.json())
-                .then(response => {
-                    const { results: characters } = response;
-                    this.current.items = [...characters];
-                    this.current.source = characters[0].url
-                })
-                .catch(err => console.error(err));
+                // console.log(url)
+
+                fetch(url, options)
+                    .then(response => response.json())
+                    .then(response => {
+                        this.current.episode = response;
+                        this.current.totalCharacters = response.characters.reduce((acc, val) => acc + 1, 0)
+                    })
+                    .catch(err => console.error(err)); 
+            }
+            else {
+                this.current.episode = null;
+            }
 
         },
         filterCharacters(name) {
@@ -60,9 +63,15 @@ export const useCharacterStore = defineStore({
 
 
         },
-        sortCharacters() {
-            console.log('getting to sorted')
-            const sortedData = this.current.items.sort((a, b) => b.id - a.id)
+        sortCharacters(sortAscending) {
+            let sortedData = null;
+            if (sortAscending) {
+                sortedData = this.current.items.sort((a, b) => b.id - a.id)
+            }
+            else {
+                sortedData = this.current.items.sort((a, b) => a.id - b.id)
+            }
+
             this.current.items = [...sortedData];
         }
     },

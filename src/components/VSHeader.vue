@@ -1,11 +1,36 @@
+<template>
+    <div class="container">
+        <div class="title">
+            <!-- <img src="./icons/Home.svg" alt="Home"> -->
+            <h2>Rick and Morty Characters</h2>
+        </div>
+        <div class="header">
+            <form action="" @submit.prevent="handleFilter">
+                <input class="input" type="text" required v-model="characterName" />
+                <button type="submit">search</button>
+            </form>
+            <button action="" @click="handleSorting">
+                <img v-if="sortingMode === SORTING_MODE_ASCENDING" class="action-icon" src='./icons/sortAscending.png'
+                    alt="" @submit="handleSorting">
+                <img v-if="sortingMode === SORTING_MODE_DESCENDING" class="action-icon" src='./icons/sortDescending.png'
+                    alt="" @submit="handleSorting">
+            </button>
+        </div>
+    </div>
+
+</template>
+
+
 <script setup>
 
 import { ref } from 'vue';
 import { useCharacterStore } from '../store/store'
 
+const SORTING_MODE_ASCENDING = 'asc';
+const SORTING_MODE_DESCENDING = 'des';
 
 const characterName = ref('');
-const sortingMode = ref('desc');
+const sortingMode = ref(SORTING_MODE_ASCENDING);
 const store = useCharacterStore();
 
 function handleFilter() {
@@ -17,28 +42,15 @@ function handleFilter() {
 
 function handleSorting() {
     // sortingMode = 'asc';
-    store.sortCharacters();
+
+    console.log(sortingMode.value)
+
+    store.sortCharacters(sortingMode.value === SORTING_MODE_ASCENDING);
+
+    sortingMode.value = sortingMode.value === SORTING_MODE_DESCENDING ? SORTING_MODE_ASCENDING : SORTING_MODE_DESCENDING;
 }
 </script>
 
-<template>
-    <div class="container">
-        <div class="title">
-            <!-- <img src="./icons/Home.svg" alt="Home"> -->
-            <h2>Rick and Morty Characters</h2>
-        </div>
-        <div class="header">
-            <form action="" @submit.prevent="handleFilter">
-                <input @change="handleFilter" type="text" required v-model="characterName" />
-                <button type="submit">search</button>
-            </form>
-            <button action="" @submit.prevent="handleSorting">
-                <img class="action-icon" src='./icons/sortAscending.png' alt="" @submit="handleSorting">
-            </button>
-        </div>
-    </div>
-
-</template>
 
 <style scoped>
 .title {
@@ -73,6 +85,14 @@ function handleSorting() {
 .action-icon {
     height: 15px;
     width: 15px;
+}
+
+.input {
+    padding: 5px 15px;
+    border: solid 3px #645CAA;
+    border-radius: 15px;
+    margin: 5px 0;
+    margin: 0 10px;
 }
 
 button {

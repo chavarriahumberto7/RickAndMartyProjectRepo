@@ -4,18 +4,15 @@
         <h1>View Character</h1>
         <div>
             <div v-for="item in items" :key="item.id">
-             <div v-if="item.id == this.$route.params.id">
-                <VSItemCard :item="item">
-                    <VSEpisodesCard :episodes="item.episode"/>
-                </VSItemCard>
-
-            </div>
+                <div v-if="item.id == this.$route.params.id">
                 
-             </div>
-             
+                    <VSItemCard :item="item">
+                        <VSReviews :item="item" />
+                        <VSEpisodesCard :episodes="item.episode" />
+                        </VSItemCard>
+                </div>
+            </div>
         </div>
-
-
     </div>
 </template>
 
@@ -23,6 +20,7 @@
 import { useCharacterStore } from '../store/store';
 import VSItemCard from '../components/VSItemCard.vue'
 import VSEpisodesCard from '../components/VSEpisodesCard.vue';
+import VSReviews from '../components/VSReviews.vue';
 
 const store = useCharacterStore();
 const items = store.current.items

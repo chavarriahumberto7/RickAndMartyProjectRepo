@@ -1,16 +1,18 @@
 <template>
     <div>
-        <h3>testing</h3>
 
     </div>
 </template>
 
 <script>
-export default {
+onMounted(() => {
 
-}
+
+})
+
+
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>
